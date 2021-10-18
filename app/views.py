@@ -72,6 +72,41 @@ def emissions(request, page=1):
     return render(request, 'emissions.html', context)
 
 
+def aggregation(request, page=1):
+    """Shows the aggregation table page"""
+    agg = ['ship_type','count','max','min','ave']
+    order_by = request.GET.get('order_by', '')
+    order_by = order_by if order_by in agg else 'ship_type'
+
+    with connections['default'].cursor() as cursor:
+        cursor.execute('SELECT COUNT(DISTINCT(ship_type)) FROM co2emission_reduced')
+        count = cursor.fetchone()[0]
+        num_pages = (count - 1) // PAGE_SIZE + 1
+        page = clamp(page, 1, num_pages)
+
+        offset = (page - 1) * PAGE_SIZE
+        cursor.execute(f'''
+            SELECT ship_type, COUNT(DISTINCT(imo,ship_name)) AS count,
+            MAX(technical_efficiency_number) AS max,
+            MIN(technical_efficiency_number) AS min,
+            CAST(AVG(technical_efficiency_number)AS decimal(10,2)) AS ave
+            FROM co2emission_reduced
+            GROUP BY ship_type
+            ORDER BY {order_by}
+            OFFSET %s
+            LIMIT %s
+            ''',[offset, PAGE_SIZE])
+        rows = namedtuplefetchall(cursor)
+    context = {
+        'nbar': 'aggregation',
+        'page': page,
+        'rows': rows,
+        'num_pages': num_pages,
+        'order_by': order_by
+    }
+    return render(request, 'aggregation.html', context)
+
+
 def insert_update_values(form, post, action, imo):
     """
     Inserts or updates database based on values in form and action to take,
