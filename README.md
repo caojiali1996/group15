@@ -57,3 +57,5 @@ Make sure you have followed the steps above to run it locally. Then:
 	* Deploy your app in its current state, and do such that Heroku automatically deploys changes whenever you push your code to GitHub.
 	![deploy](./images/heroku-deploy.png)
 3. After 1-2 min, you should be able to see your page at `your-app-name.herokuapp.com`!
+
+git commit -am "your message" && git push 
