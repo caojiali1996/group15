@@ -4,6 +4,7 @@ from django.shortcuts import redirect
 from django.http import Http404
 from django.db.utils import IntegrityError
 
+
 from app.utils import namedtuplefetchall, clamp
 from app.forms import ImoForm
 
@@ -106,6 +107,39 @@ def aggregation(request, page=1):
     }
     return render(request, 'aggregation.html', context)
 
+def visual(request):
+    """Shows the visual page"""
+    with connections['default'].cursor() as cursor:
+        cursor.execute(f'''
+            SELECT ship_type,
+            AVG(technical_efficiency_number) AS ave
+            FROM co2emission_reduced
+            GROUP BY ship_type
+            ORDER BY ave DESC
+            ''')
+        res1 = list(cursor.fetchall())
+        labels = list([item[0] for item in res1])
+        data = list([item[1] for item in res1])
+        cursor.execute(f'''
+            SELECT ship_type,
+            COUNT(DISTINCT(imo,ship_name)) AS count
+            FROM co2emission_reduced
+            GROUP BY ship_type
+            ORDER BY count DESC
+            ''')
+        res2 = list(cursor.fetchall())
+        labels2 = list([item[0] for item in res2])
+        data2 = list([item[1] for item in res2])
+    
+    context = {
+        'nbar': 'visual',
+        'labels': labels,
+        'data': data,
+        'labels2':labels2,
+        'data2': data2
+    }
+    return render(request, 'visual.html', context)
+    
 
 def insert_update_values(form, post, action, imo):
     """

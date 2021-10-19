@@ -34,7 +34,7 @@
       {% for row in rows %}
         <tr style="cursor:pointer;" >
           {% for val in row %}
-          <td>{{ val|default:'' }}</td>
+          <td>{{ val|default:'0' }}</td>
           {% endfor %}
         </tr>
       {% endfor %}
