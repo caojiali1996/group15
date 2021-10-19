@@ -112,14 +112,18 @@ def visual(request):
     with connections['default'].cursor() as cursor:
         cursor.execute(f'''
             SELECT ship_type,
-            AVG(technical_efficiency_number) AS ave
+            MIN(technical_efficiency_number) AS min,
+            AVG(technical_efficiency_number) AS ave,
+            MAX(technical_efficiency_number) AS max
             FROM co2emission_reduced
             GROUP BY ship_type
             ORDER BY ave DESC
             ''')
         res1 = list(cursor.fetchall())
         labels = list([item[0] for item in res1])
-        data = list([item[1] for item in res1])
+        min = list([item[1] for item in res1])
+        ave = list([item[2] for item in res1])
+        max = list([item[3] for item in res1])
         cursor.execute(f'''
             SELECT ship_type,
             COUNT(DISTINCT(imo,ship_name)) AS count
@@ -129,14 +133,16 @@ def visual(request):
             ''')
         res2 = list(cursor.fetchall())
         labels2 = list([item[0] for item in res2])
-        data2 = list([item[1] for item in res2])
+        count = list([item[1] for item in res2])
     
     context = {
         'nbar': 'visual',
         'labels': labels,
-        'data': data,
+        'min': min,
+        'ave': ave,
+        'max': max,
         'labels2':labels2,
-        'data2': data2
+        'count': count
     }
     return render(request, 'visual.html', context)
     

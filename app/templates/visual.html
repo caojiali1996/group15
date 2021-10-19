@@ -20,23 +20,23 @@
             labels: {{ labels2|safe }},
             datasets: [{
                 label: 'Average EEDI',
-                data: {{ data2|safe }},
+                data: {{ count|safe }},
                 backgroundColor: [
                     'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
+                    'rgba(54, 162, 235, 0.9)',
+                    'rgba(255, 206, 86, 0.8)',
+                    'rgba(75, 192, 192, 0.7)',
+                    'rgba(153, 102, 255, 0.6)',
                     'rgba(255, 99, 132, 0.5)',
-                    'rgba(54, 162, 235, 0.5)',
-                    'rgba(255, 206, 86, 0.5)',
-                    'rgba(75, 192, 192, 0.5)',
-                    'rgba(153, 102, 255, 0.5)',                
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(54, 162, 235, 0.4)',
+                    'rgba(255, 206, 86, 0.3)',
                     'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)', ]           
+                    'rgba(153, 102, 255, 0.1)',                
+                    'rgba(255, 99, 132, 0.1)',
+                    'rgba(54, 162, 235, 0.1)',
+                    'rgba(255, 206, 86, 0.1)',
+                    'rgba(75, 192, 192, 0.1)',
+                    'rgba(153, 102, 255, 0.1)', ]           
             }]
         },
         options: {
@@ -53,47 +53,45 @@
 </div> 
 
 <div class="container"style="width: 75%;text-align:center;padding-bottom: 50px;" >
-    <h2>Average EEDI of Different Ship Types</h2>
+    <h2>Average and Minimum EEDI of Different Ship Types</h2>
 
-    <canvas id="barchart" width="400" height="200"></canvas>
+    <canvas id="linechart" width="400" height="200"></canvas>
     
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
 
     <script>
-    var ctx = document.getElementById('barchart');
-    var barchart = new Chart(ctx, {
-      type: 'bar',
+    var ctx = document.getElementById('linechart');
+    var linechart = new Chart(ctx, {
+      type: 'line',
       data: {
           labels: {{ labels|safe }},
-          datasets: [{
+          datasets: [ 
+            {
               label: 'Average EEDI',
-              data: {{ data|safe }}, 
-              backgroundColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 99, 132, 0.5)',
-                    'rgba(54, 162, 235, 0.5)',
-                    'rgba(255, 206, 86, 0.5)',
-                    'rgba(75, 192, 192, 0.5)',
-                    'rgba(153, 102, 255, 0.5)',                
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)', ]              
-          }]
+              data: {{ ave|safe }}, 
+              backgroundColor: 'rgba(255, 99, 132, 0.5)' ,
+              stack: 'combined',
+              type: 'bar'
+              
+              
+          },    
+          {
+              label: 'Minimum EEDI',
+              data: {{ min|safe }},
+              backgroundColor: 'rgba(54, 162, 235, 0.5)',
+              stack: 'combined',
+              
+          }
+        ]
       },
       options: {
-          scales: {
-              y: {
-                  beginAtZero: true
-              }
-          }
-      }
-  });
+            scales: {
+                y: {
+                    stacked: true
+                }
+            }
+        }
+        });
   </script>
 </div>  
 
