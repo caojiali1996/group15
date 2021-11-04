@@ -175,6 +175,7 @@ def visual(request):
 
 def radarchart(request):
     """Shows the visual page"""
+    with connections['default'].cursor() as cursor:
         cursor.execute(f'''
             select v.country, max(f.eiv) as max_eiv, min(f.eiv) as min_eiv
             from fact f, verifiers v
