@@ -137,15 +137,15 @@ def visual(request):
         count = list([item[1] for item in res2])
         
         cursor.execute(f'''
-            select v.country, max(f.eedi) as max_eedi, min(f.eedi) as min_eedi
+            select v.country, max(f.eiv) as max_eiv, min(f.eiv) as min_eiv
             from fact f, verifiers v
             where f.verifier = v.id
             group by v.country
             ''')
         res3 = list(cursor.fetchall())
         labels3 = list([item[0] for item in res3])
-        max_eedi = list([item[1] for item in res3])
-        min_eedi = list([item[2] for item in res3])
+        max_eiv = list([item[1] for item in res3])
+        min_eiv = list([item[2] for item in res3])
     
     context = {
         'nbar': 'visual',
@@ -156,8 +156,8 @@ def visual(request):
         'labels2':labels2,
         'count': count,
         'labels3':labels3,
-        'max_eedi': max_eedi,
-        'min_eedi': min_eedi
+        'max_eiv': max_eiv,
+        'min_eiv': min_eiv
     }
     return render(request, 'visual.html', context)
     
