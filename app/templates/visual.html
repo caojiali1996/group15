@@ -20,7 +20,7 @@
             labels: {{ labels2|safe }},
             datasets: [{
                 label: 'Average EEDI',
-                data: {{ count|safe }},
+                data: {{ sum2|safe }},
                 backgroundColor: [
                     'rgba(255, 99, 132, 1)',
                     'rgba(54, 162, 235, 0.9)',
@@ -52,7 +52,7 @@
     </div>  
 </div> 
 
-<div class="container"style="width: 75%;text-align:center;padding-bottom: 50px;" >
+<!-- <div class="container"style="width: 75%;text-align:center;padding-bottom: 50px;" >
     <h2>EEDI Data of Different Ship Types</h2>
 
     <canvas id="linechart" width="400" height="200"></canvas>
@@ -119,6 +119,6 @@
     });
   </script>
 </div>  
-
+ -->
 {% endblock %}
 
