@@ -122,11 +122,8 @@
 
 <div class="container"style="width: 75%;text-align:center;padding-bottom: 50px;" >
     <h2>EIV Data of Different Countries</h2>
-    <p>{{max_eiv}}</p>
-    <p>{{min_eiv}}</p>
-    <p>{{labels3}}</p>
-
-    <canvas id="pie-chart">不会不兼容吧</canvas>
+    
+    <canvas id="pie-chart"></canvas>
 
     
     <script src="https://cdn.staticfile.org/echarts/4.3.0/echarts.min.js"></script>
@@ -174,7 +171,7 @@
         ]
         };
 
-        option && myChart.setOption(option);
+        myChart.setOption(option);
 
 
 
