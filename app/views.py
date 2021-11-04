@@ -77,7 +77,7 @@ def aggregation(request, page=1):
     """Shows the aggregation table page"""
     agg = ['country','month','ship_type']
     order_by = request.GET.get('order_by', '')
-    order_by = order_by if order_by in ['-country','-month','-ship_type'] else '-country'
+    order_by = order_by if order_by in agg else ['-country','-month','-ship_type']
 
     with connections['default'].cursor() as cursor:
         cursor.execute('SELECT COUNT(*) FROM co2emission_reduced')
