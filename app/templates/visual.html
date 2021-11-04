@@ -126,11 +126,11 @@
     <p>{{min_eiv}}</p>
     <p>{{labels3}}</p>
 
-    <canvas id="pie-chart" width="400" height="200"></canvas>
-</div>
+    <canvas id="pie-chart"></canvas>
+
     
     <script src="https://cdn.staticfile.org/echarts/4.3.0/echarts.min.js"></script>
-    
+    <div class="table-responsive">
     <script type="text/javascript">
 
         var myChart = echarts.init(document.getElementById('main'));
@@ -179,6 +179,7 @@
 
 
     </script>
+    </div>
  
 
 {% endblock %}
