@@ -5,11 +5,11 @@
 {% block content %}
     <div id="main" style="width: 600px;height:400px;"></div>
     <div id="container" style='width: 75%;height:50%'>
-        <canvas id="radarchart"  ></canvas>
+        <canvas id="pie-chart"  ></canvas>
       </div>
+
     <script src="https://cdn.staticfile.org/echarts/4.3.0/echarts.min.js"></script>
     <script type="text/javascript">
-      // 基于准备好的dom，初始化echarts实例
 
 
         var myChart = echarts.init(document.getElementById('main'));
@@ -20,11 +20,11 @@
             text: 'EIV Data of Different Countries'
         },
         legend: {
-            data: ['MAX','MIN']
+            data: ['MIN','MAX']
         },
         radar: {
             // shape: 'circle',
-           indicator: [{ name: 'Croatia', max: 24.489997958350262},
+            indicator: [{ name: 'Croatia', max: 24.489997958350262},
                         { name: 'Italy', max: 24.489997958350262},
                         { name: 'Greece', max: 24.489997958350262},
                         { name: 'China', max: 24.489997958350262},
@@ -35,17 +35,18 @@
                         { name: 'Poland', max: 24.489997958350262},
                         { name: 'Germany', max: 24.489997958350262},
                         { name: 'Japan', max: 24.489997958350262}
-                       ]
+                        ]
         },
         series: [
             {
-            name: 'EIV MAX vs MIN',
+            name: 'Budget vs spending',
             type: 'radar',
             data: [
             {
                 value: {{max_eiv}},
                 name: 'MAX'
                 },
+                {
                 {
                 value: {{min_eiv}},
                 name: 'MIN'
@@ -58,7 +59,9 @@
 
         option && myChart.setOption(option);
 
-</div>
-</div>
-    </script>                   
+
+
+    </script>
+ </div>
+ </div>
 {% endblock %}
