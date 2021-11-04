@@ -131,30 +131,7 @@ def visual(request):
         res2 = list(cursor.fetchall())
         labels2 = list([item[0] for item in res2])
         sum2 = list([item[1] for item in res2])
-        
-#         cursor.execute(f'''
-#             select v.country, max(f.eiv) as max_eiv, min(f.eiv) as min_eiv
-#             from fact f, verifiers v
-#             where f.verifier = v.id
-#             and v.country<>'Portugal'
-#             group by v.country
-#             ''')
-#         res3 = namedtuplefetchall(cursor)
-#         labels3 = [getattr(i, 'country') for i in res3]
-#         max_eiv = [float(getattr(i, 'max_eiv')) for i in res3]
-#         min_eiv = [float(getattr(i, 'min_eiv')) for i in res3]
-        
-#         cursor.execute(f'''
-#             select v.country, count(*) 
-#             from fact f left join verifiers v on f.verifier=v.id
-#             group by v.country
-#             ORDER BY v.country DESC
-#             ''')
-#         res4 = list(cursor.fetchall())
-#         labels4 = list([item[0] for item in res4])
-#         count4 = list([item[1] for item in res4])
-
-    
+     
     context = {
         'nbar': 'visual',
         'labels1':labels1,
