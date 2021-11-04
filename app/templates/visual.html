@@ -127,7 +127,6 @@
 
     
     <script src="https://cdn.staticfile.org/echarts/4.3.0/echarts.min.js"></script>
-    <div class="table-responsive">
     <script type="text/javascript">
 
         var myChart = echarts.init(document.getElementById('main'));
@@ -135,7 +134,7 @@
 
         option = {
         legend: {
-            data: ['max_eiv','min_eiv']
+            data: ['MAX','MAX']
         },
         radar: {
             // shape: 'circle',
@@ -171,12 +170,11 @@
         ]
         };
 
-        myChart.setOption(option);
+     option && myChart.setOption(option);
 
 
 
     </script>
-    </div>
 </div>
  
 
