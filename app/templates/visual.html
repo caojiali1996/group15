@@ -70,7 +70,7 @@
               label: 'Average time',
               data: {{ avg_time|safe }}, 
               backgroundColor: 'rgba(255, 99, 132, 0.5)' ,
-              stack: 'combined',
+              stack: 'false',
               type: 'bar',
               order: 2,
             },    
@@ -79,7 +79,7 @@
               data: {{ avg_emi|safe }},
               backgroundColor: 'rgba(54, 162, 235, 1)',
               borderColor: 'rgba(54, 162, 235, 0.5)',
-              stack: 'combined',
+              stack: 'false',
               order: 0,
               
           }
@@ -97,12 +97,14 @@
                 y: {
                     type: 'linear',
                     display: true,
-                    position: 'left',
-                    min:0,
-                    max:32000
-                }
-                
-                
+                    position: 'left'
+                 
+                },
+                z: {
+                    type: 'linear',
+                    display: true,
+                    position: 'right'
+                }       
         }
         }
     });
