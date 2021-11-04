@@ -145,8 +145,8 @@ def visual(request):
             ''')
         res3 = namedtuplefetchall(cursor)
         labels3 = [getattr(i, 'country') for i in res3]
-        max_eiv = [getattr(i, 'max_eiv') for i in res3]
-        min_eiv = [getattr(i, 'min_eiv') for i in res3]
+        max_eiv = [float(getattr(i, 'max_eiv')) for i in res3]
+        min_eiv = [float(getattr(i, 'min_eiv')) for i in res3]
         
         cursor.execute(f'''
             select v.country, count(*) 
