@@ -140,6 +140,7 @@ def visual(request):
             select v.country, max(f.eiv) as max_eiv, min(f.eiv) as min_eiv
             from fact f, verifiers v
             where f.verifier = v.id
+            and v.country<>'Portugal'
             group by v.country
             ''')
         res3 = namedtuplefetchall(cursor)
