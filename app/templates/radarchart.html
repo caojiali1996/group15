@@ -4,7 +4,9 @@
 
 {% block content %}
     <div id="main" style="width: 600px;height:400px;"></div>
+    <div id="container" style='width: 75%;height:50%'>
         <canvas id="pie-chart"  ></canvas>
+      </div>
 
     <script src="https://cdn.staticfile.org/echarts/4.3.0/echarts.min.js"></script>
     <script type="text/javascript">
@@ -18,7 +20,7 @@
             text: 'EIV Data of Different Countries'
         },
         legend: {
-            data: ['MAX','MIN']
+            data: ['MIN','MAX']
         },
         radar: {
             // shape: 'circle',
@@ -41,13 +43,13 @@
             type: 'radar',
             data: [
             {
-                value: {{max_eiv}},
-                name: 'MAX'
+                value: {{min_eiv}},
+                name: 'MIN'
                 },
                 {
                 {
-                value: {{min_eiv}},
-                name: 'MIN'
+                value: {{max_eiv}},
+                name: 'MAX'
                 }
             
             ]
