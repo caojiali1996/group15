@@ -17,5 +17,5 @@ urlpatterns = [
     path('aggregation/', app.views.aggregation, name='aggregation'),
     path('aggregation/<int:page>', app.views.aggregation, name='aggregation'),
     path('visual/', app.views.visual, name='visual'),
-    path('radarchart/',app.views.visual,name='radarchart')
+    path('radarchart/',app.views.radarchart,name='radarchart')
 ]
