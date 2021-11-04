@@ -3,10 +3,8 @@
 {% load static %}
 
 {% block content %}
-    <div id="main" style="width: 600px;height:400px;"></div>
-    <div id="container" style='width: 75%;height:50%'>
+    <div class="container" style="width: 75%;padding-bottom: 50px;text-align:center;" >
         <canvas id="radarchart"  width="400" height="200"></canvas>
-      </div>
 
     <script src="https://cdn.staticfile.org/echarts/4.3.0/echarts.min.js"></script>
     <script type="text/javascript">
@@ -62,6 +60,5 @@
 
 
     </script>
- </div>
  </div>
 {% endblock %}
