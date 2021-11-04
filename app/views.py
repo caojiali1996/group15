@@ -111,12 +111,12 @@ def visual(request):
     """Shows the visual page"""
     with connections['default'].cursor() as cursor:
         cursor.execute(f'''
-        select  d.month, 
-            avg(f.totol_time_spent_at_sea) as Avg_time_spent, 
-            avg(f.total_co2_emissions) as Avg_CO2_emissions
-        from fact f left join ships s on f.ship=s.id left join date d on f.issue_date=d.id
-        group by d.month
-        order by d.month
+        select  v.country, 
+                avg(f.totol_time_spent_at_sea) as Avg_time_spent, 
+                avg(f.total_co2_emissions) as Avg_CO2_emissions
+        from fact f left join ships s on f.ship=s.id left join verifiers v on f.verifier=v.id
+        group by v.country
+        order by v.country
             ''')
         res1 = list(cursor.fetchall())
         labels1 = list([item[0] for item in res1])
