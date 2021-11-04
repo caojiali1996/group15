@@ -142,10 +142,10 @@ def visual(request):
             where f.verifier = v.id
             group by v.country
             ''')
-        res3 = list(cursor.fetchall())
-        labels3 = list([item[0] for item in res3])
-        max_eiv = list([item[1] for item in res3])
-        min_eiv = list([item[2] for item in res3])
+        res3 = namedtuplefetchall(cursor)
+        labels3 = [getattr(i, 'country') for i in res3]
+        max_eiv = [getattr(i, 'max_eiv') for i in res3]
+        min_eiv = [getattr(i, 'min_eiv') for i in res3]
     
     context = {
         'nbar': 'visual',
