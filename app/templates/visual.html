@@ -181,5 +181,52 @@
     </script>
 </div> 
 
+<div class="container" style="width: 75%;padding-bottom: 50px;text-align:center;" >
+    <h2>Number of Ships Verified by Different Countries</h2>
+    
+    <canvas id="piechart" width="400" height="200"></canvas>        
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+    
+    <div class="table-responsive">
+        <script>
+        var ctx = document.getElementById('piechart');
+        var piechart = new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: {{ labels4|safe }},
+            datasets: [{
+                label: 'Average EEDI',
+                data: {{ count4|safe }},
+                backgroundColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 0.9)',
+                    'rgba(255, 206, 86, 0.8)',
+                    'rgba(75, 192, 192, 0.7)',
+                    'rgba(153, 102, 255, 0.6)',
+                    'rgba(255, 99, 132, 0.5)',
+                    'rgba(54, 162, 235, 0.4)',
+                    'rgba(255, 206, 86, 0.3)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.1)',                
+                    'rgba(255, 99, 132, 0.1)',
+                    'rgba(54, 162, 235, 0.1)',
+                    'rgba(255, 206, 86, 0.1)',
+                    'rgba(75, 192, 192, 0.1)',
+                    'rgba(153, 102, 255, 0.1)', ]           
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                        beginAtZero: true
+                }
+            }
+        }
+        });
+        </script>
+        
+    </div>  
+</div>
+
 {% endblock %}
 
