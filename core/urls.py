@@ -16,6 +16,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('aggregation/', app.views.aggregation, name='aggregation'),
     path('aggregation/<int:page>', app.views.aggregation, name='aggregation'),
-    path('visual/', app.views.visual, name='visual'),
-    path('radarchart/',app.views.visual,name='radarchart')
+    path('visual/', app.views.visual, name='visual')
 ]
