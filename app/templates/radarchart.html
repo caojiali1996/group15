@@ -3,9 +3,10 @@
 {% load static %}
 
 {% block content %}
-    <div class="container" style="width: 75%;padding-bottom: 50px;text-align:center;" ></div>
-        <canvas id="radarchart"  width="400" height="200"></canvas>
-
+    <div id="main" style="width: 600px;height:400px;"></div>
+    <div id="container" style='width: 75%;height:50%'>
+        <canvas id="radarchart"  ></canvas>
+      </div>
     <script src="https://cdn.staticfile.org/echarts/4.3.0/echarts.min.js"></script>
     <script type="text/javascript">
       // 基于准备好的dom，初始化echarts实例
@@ -57,7 +58,7 @@
 
         option && myChart.setOption(option);
 
-
-
+</div>
+</div>
     </script>                   
 {% endblock %}
