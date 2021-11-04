@@ -127,7 +127,7 @@ def visual(request):
             select s.ship_type, sum(f.total_co2_emissions)
             from fact f left join ships s on f.ship=s.id
             group by s.ship_type
-            order by s.ship_type desc
+            order by sum(f.total_co2_emissions) desc
             ''')
         res2 = list(cursor.fetchall())
         labels2 = list([item[0] for item in res2])
