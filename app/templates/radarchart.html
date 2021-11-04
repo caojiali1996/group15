@@ -4,9 +4,7 @@
 
 {% block content %}
     <div id="main" style="width: 600px;height:400px;"></div>
-    <div id="container" style='width: 75%;height:50%'>
         <canvas id="radarchart"  ></canvas>
-      </div>
 
     <script src="https://cdn.staticfile.org/echarts/4.3.0/echarts.min.js"></script>
     <script type="text/javascript">
@@ -20,7 +18,7 @@
             text: 'EIV MAX vs MIN'
         },
         legend: {
-            data: ['MIN','MAX']
+            data: ['MAX','MIN']
         },
         radar: {
             // shape: 'circle',
