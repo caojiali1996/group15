@@ -165,7 +165,7 @@ def visual(request):
         'ave': ave,
         'max': max,
         'labels2':labels2,
-        'count': count,
+        'sum2': sum2,
         'labels3':labels3,
         'max_eiv': max_eiv,
         'min_eiv': min_eiv
