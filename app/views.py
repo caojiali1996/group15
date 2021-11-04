@@ -124,6 +124,7 @@ def visual(request):
         min = list([item[1] for item in res1])
         ave = list([item[2] for item in res1])
         max = list([item[3] for item in res1])
+        
         cursor.execute(f'''
             SELECT ship_type,
             COUNT(DISTINCT(imo,ship_name)) AS count
@@ -134,6 +135,17 @@ def visual(request):
         res2 = list(cursor.fetchall())
         labels2 = list([item[0] for item in res2])
         count = list([item[1] for item in res2])
+        
+        cursor.execute(f'''
+            select v.country, sum(total_co2_emissions) as sum_co2, sum(total_fuel_consumption) as sum_fuel
+            from fact f, verifiers v
+            where f.verifier = v.id
+            group by v.country
+            ''')
+        res3 = list(cursor.fetchall())
+        labels3 = list([item[0] for item in res3])
+        sum_co2 = list([item[1] for item in res3])
+        sum_fuel = list([item[2] for item in res3])
     
     context = {
         'nbar': 'visual',
@@ -142,7 +154,10 @@ def visual(request):
         'ave': ave,
         'max': max,
         'labels2':labels2,
-        'count': count
+        'count': count,
+        'labels3':labels3,
+        'sum_co2': sum_co2,
+        'sum_fuel': sum_fuel
     }
     return render(request, 'visual.html', context)
     
