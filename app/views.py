@@ -80,8 +80,8 @@ def aggregation(request, page=1):
     order_by = order_by if order_by in agg else 'country'
 
     with connections['default'].cursor() as cursor:
-        cursor.execute('SELECT COUNT(DISTINCT(ship_type)) FROM co2emission_reduced')
-        count = cursor.fetchone()[0]
+        cursor.execute('SELECT COUNT(*) FROM co2emission_reduced')
+        count = 450
         num_pages = (count - 1) // PAGE_SIZE + 1
         page = clamp(page, 1, num_pages)
 
