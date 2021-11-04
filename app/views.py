@@ -137,15 +137,15 @@ def visual(request):
         count = list([item[1] for item in res2])
         
         cursor.execute(f'''
-            select v.country, sum(total_co2_emissions) as sum_co2, sum(total_fuel_consumption) as sum_fuel
+            select v.country, max(f.eedi) as max_eedi, min(f.eedi) as min_eedi
             from fact f, verifiers v
             where f.verifier = v.id
             group by v.country
             ''')
         res3 = list(cursor.fetchall())
         labels3 = list([item[0] for item in res3])
-        sum_co2 = list([item[1] for item in res3])
-        sum_fuel = list([item[2] for item in res3])
+        max_eedi = list([item[1] for item in res3])
+        min_eedi = list([item[2] for item in res3])
     
     context = {
         'nbar': 'visual',
@@ -156,8 +156,8 @@ def visual(request):
         'labels2':labels2,
         'count': count,
         'labels3':labels3,
-        'sum_co2': sum_co2,
-        'sum_fuel': sum_fuel
+        'max_eedi': max_eedi,
+        'min_eedi': min_eedi
     }
     return render(request, 'visual.html', context)
     
