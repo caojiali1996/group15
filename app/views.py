@@ -172,6 +172,72 @@ def visual(request):
         'min_eiv': min_eiv
     }
     return render(request, 'visual.html', context)
+
+def radarchart(request):
+    """Shows the visual page"""
+    with connections['default'].cursor() as cursor:
+        cursor.execute(f'''
+            SELECT ship_type,
+            MIN(technical_efficiency_number) AS min,
+            AVG(technical_efficiency_number) AS ave,
+            MAX(technical_efficiency_number) AS max
+            FROM co2emission_reduced
+            GROUP BY ship_type
+            ORDER BY ave DESC
+            ''')
+        res1 = list(cursor.fetchall())
+        labels = list([item[0] for item in res1])
+        min = list([item[1] for item in res1])
+        ave = list([item[2] for item in res1])
+        max = list([item[3] for item in res1])
+        
+        cursor.execute(f'''
+            SELECT ship_type,
+            COUNT(DISTINCT(imo,ship_name)) AS count
+            FROM co2emission_reduced
+            GROUP BY ship_type
+            ORDER BY count DESC
+            ''')
+        res2 = list(cursor.fetchall())
+        labels2 = list([item[0] for item in res2])
+        count = list([item[1] for item in res2])
+        
+        cursor.execute(f'''
+            select v.country, max(f.eiv) as max_eiv, min(f.eiv) as min_eiv
+            from fact f, verifiers v
+            where f.verifier = v.id
+            and v.country<>'Portugal'
+            group by v.country
+            ''')
+        res3 = namedtuplefetchall(cursor)
+        labels3 = [getattr(i, 'country') for i in res3]
+        max_eiv = [float(getattr(i, 'max_eiv')) for i in res3]
+        min_eiv = [float(getattr(i, 'min_eiv')) for i in res3]
+        
+        cursor.execute(f'''
+            select v.country, count(*) 
+            from fact f left join verifiers v on f.verifier=v.id
+            group by v.country
+            ORDER BY v.country DESC
+            ''')
+        res4 = list(cursor.fetchall())
+        labels4 = list([item[0] for item in res4])
+        count4 = list([item[1] for item in res4])
+
+    
+    context = {
+        'nbar': 'visual',
+        'labels': labels,
+        'min': min,
+        'ave': ave,
+        'max': max,
+        'labels2':labels2,
+        'count': count,
+        'labels3':labels3,
+        'max_eiv': max_eiv,
+        'min_eiv': min_eiv
+    }
+    return render(request, 'radarchart.html', context)
     
 
 def insert_update_values(form, post, action, imo):
