@@ -52,8 +52,8 @@
     </div>  
 </div> 
 
-<!-- <div class="container"style="width: 75%;text-align:center;padding-bottom: 50px;" >
-    <h2>EEDI Data of Different Ship Types</h2>
+<div class="container"style="width: 75%;text-align:center;padding-bottom: 50px;" >
+    <h2>Average travel time and CO2 emission</h2>
 
     <canvas id="linechart" width="400" height="200"></canvas>
     
@@ -64,36 +64,25 @@
     var linechart = new Chart(ctx, {
       type: 'line',
       data: {
-          labels: {{ labels|safe }},
+          labels: {{ labels1|safe }},
           datasets: [ 
             {
-              label: 'Average EEDI',
-              data: {{ ave|safe }}, 
+              label: 'Average time',
+              data: {{ avg_time|safe }}, 
               backgroundColor: 'rgba(255, 99, 132, 0.5)' ,
               stack: 'combined',
               type: 'bar',
               order: 2,
-             
-              
-              
-          },    
+            },    
           {
-              label: 'Minimum EEDI',
-              data: {{ min|safe }},
+              label: 'Average emission',
+              data: {{ avg_emi|safe }},
               backgroundColor: 'rgba(54, 162, 235, 1)',
               borderColor: 'rgba(54, 162, 235, 0.5)',
               stack: 'combined',
               order: 0,
               
-          },
-          {
-              label: 'Maximum EEDI',
-              data: {{ max|safe }},
-              backgroundColor: 'rgba(255, 206, 86, 1)',
-              borderColor: 'rgba(255, 206, 86, 0.5)',
-              order: 1,
-              
-            }
+          }
         ]
       },
       options: {
@@ -119,6 +108,6 @@
     });
   </script>
 </div>  
- -->
+
 {% endblock %}
 
