@@ -146,6 +146,17 @@ def visual(request):
         labels3 = [getattr(i, 'country') for i in res3]
         max_eiv = [getattr(i, 'max_eiv') for i in res3]
         min_eiv = [getattr(i, 'min_eiv') for i in res3]
+        
+        cursor.execute(f'''
+            select v.country, count(*) 
+            from fact f left join verifiers v on f.verifier=v.id
+            group by v.country
+            ORDER BY v.country DESC
+            ''')
+        res4 = list(cursor.fetchall())
+        labels4 = list([item[0] for item in res4])
+        count4 = list([item[1] for item in res4])
+
     
     context = {
         'nbar': 'visual',
