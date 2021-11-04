@@ -120,14 +120,14 @@
   </script>
 </div>  
 
-<div class="container"style="width: 75%;text-align:center;padding-bottom: 50px;" >
+<div class="container"style="width: 75%;text-align:center;padding-bottom: 50px;" ></div>
     <h2>EIV Data of Different Countries</h2>
     
-    <canvas id="pie-chart"></canvas>
+<!--     <canvas id="pie-chart"></canvas> -->
 
     
-    <script src="https://cdn.staticfile.org/echarts/4.3.0/echarts.min.js"></script>
-    <script type="text/javascript">
+<!--     <script src="https://cdn.staticfile.org/echarts/4.3.0/echarts.min.js"></script> -->
+    <script type="text/javascript" src="https://cdn.staticfile.org/echarts/4.3.0/echarts.min.js">
 
         var myChart = echarts.init(document.getElementById('main'));
         var option;
@@ -157,11 +157,11 @@
             type: 'radar',
             data: [
             {
-                value: {{max_eiv|safe}},
+                value: {{max_eiv}},
                 name: 'MAX'
                 },
                 {
-                value: {{min_eiv|safe}},
+                value: {{min_eiv}},
                 name: 'MIN'
                 }
             
@@ -175,7 +175,7 @@
 
 
     </script>
-</div>
+
  
 
 {% endblock %}
