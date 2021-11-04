@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% block title %} radarchart {% endblock %}
+{% load static %}
+
+{% block content %}
+    <div id="main" style="width: 600px;height:400px;"></div>
+    <div id="container" style='width: 75%;height:50%'>
+        <canvas id="pie-chart"  ></canvas>
+      </div>
+
+    <script src="https://cdn.staticfile.org/echarts/4.3.0/echarts.min.js"></script>
+    <script type="text/javascript">
+      // 基于准备好的dom，初始化echarts实例
+
+
+        var myChart = echarts.init(document.getElementById('main'));
+        var option;
+
+        option = {
+        title: {
+            text: 'Basic Radar Chart'
+        },
+        legend: {
+            data: ['MAX','MIN']
+        },
+        radar: {
+            // shape: 'circle',
+           indicator: [{ name: 'Croatia', max: 599.76},
+                        { name: 'Italy', max: 599.76},
+                        { name: 'Greece', max: 599.76},
+                        { name: 'China', max: 599.76},
+                        { name: 'India', max: 599.76},
+                        { name: 'Sweden', max: 599.76},
+                        { name: 'France', max: 599.76},
+                        { name: 'Korea, Republic of', max: 599.76},
+                        { name: 'Poland', max: 599.76},
+                        { name: 'Germany', max: 599.76},
+                        { name: 'Japan', max: 599.76}
+                       ]
+        },
+        series: [
+            {
+            name: 'EIV MAX vs MIN',
+            type: 'radar',
+            data: [
+            {
+                value: {{max_eiv}},
+                name: 'MAX'
+                },
+                {
+                value: {{min_eiv}},
+                name: 'MIN'
+                }
+            
+            ]
+            }
+        ]
+        };
+
+        option && myChart.setOption(option);
+
+
+
+    </script>
+ </div>
+ </div>
+{% endblock %}
