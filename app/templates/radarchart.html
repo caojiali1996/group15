@@ -4,7 +4,7 @@
 
 {% block content %}
     <div id="main" style="width: 600px;height:400px;"></div>
-        <canvas id="radarchart"  ></canvas>
+        <canvas id="pie-chart"  ></canvas>
 
     <script src="https://cdn.staticfile.org/echarts/4.3.0/echarts.min.js"></script>
     <script type="text/javascript">
@@ -15,7 +15,7 @@
 
         option = {
         title: {
-            text: 'EIV MAX vs MIN'
+            text: 'EIV Data of Different Countries'
         },
         legend: {
             data: ['MAX','MIN']
@@ -37,7 +37,7 @@
         },
         series: [
             {
-            name: 'Budget vs spending',
+            name: 'EIV MAX vs MIN',
             type: 'radar',
             data: [
             {
