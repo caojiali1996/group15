@@ -87,7 +87,7 @@ def aggregation(request, page=1):
 
         offset = (page - 1) * PAGE_SIZE
         cursor.execute(f'''
-            select v.country, d.month, s.ship_type, count(f.ship), max(f.eedi), min(f.eedi), max(f.eiv), min(f.eiv), sum(total_co2_emissions), sum(total_fuel_consumption)
+            select v.country, d.month, s.ship_type, count(f.ship) as count, max(f.eedi) as max_eedi, min(f.eedi) as min_eedi, max(f.eiv) as max_eiv, min(f.eiv) as min_eiv, sum(total_co2_emissions) as sum_co2, sum(total_fuel_consumption) as sum_fuel
             from date d, fact f, ships s, verifiers v
             where f.ship = s.id
             and f.issue_date = d.id
