@@ -40,7 +40,7 @@ def emissions(request, page=1):
     """Shows the emissions table page"""
     msg = None
     order_by = request.GET.get('order_by', '')
-    order_by = order_by descending if order_by descending in COLUMNS else 'imo'
+    order_by = order_by if order_by in COLUMNS else 'imo'
 
     with connections['default'].cursor() as cursor:
         cursor.execute('SELECT COUNT(*) FROM co2emission_reduced')
