@@ -17,4 +17,5 @@ urlpatterns = [
     path('aggregation/', app.views.aggregation, name='aggregation'),
     path('aggregation/<int:page>', app.views.aggregation, name='aggregation'),
     path('visual/', app.views.visual, name='visual')
+    path('barchart/',app.views.visual,name='barchart')
 ]
