@@ -7,6 +7,12 @@
 
 <div class="container" style="width: 75%;padding-bottom: 50px;text-align:center;" >
     <h2>Number of Ships for Different Ship Types</h2>
+    <button
+    class="btn btn-success"
+    onclick="location.href='/radarchart/';"
+    style="float: right;background-color:#49796b">
+     radarchart
+     </button>
     
     <canvas id="piechart" width="400" height="200"></canvas>        
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
@@ -120,66 +126,6 @@
     });
   </script>
 </div>  
-
-<div class="container"style="width: 75%;text-align:center;padding-bottom: 50px;" >
-    <h2>EIV Data of Different Countries</h2>
-    <p>{{max_eiv|safe}}</p>
-    <p>{{min_eiv|safe}}</p>
-    <p>{{labels3|safe}}</p>
-    
-    <canvas id="pie-chart"></canvas>
-
-    
-<!--     <script src="https://cdn.staticfile.org/echarts/4.3.0/echarts.min.js"></script> -->
-    <script>
-
-        var myChart = echarts.init(document.getElementById('main'));
-        var option;
-
-        option = {
-        legend: {
-            data: ['MAX','MIN']
-        },
-        radar: {
-            // shape: 'circle',
-            indicator: [{ name: 'Croatia', max: 599.76},
-                        { name: 'Italy', max: 599.76},
-                        { name: 'Greece', max: 599.76},
-                        { name: 'China', max: 599.76},
-                        { name: 'India', max: 599.76},
-                        { name: 'Sweden', max: 599.76},
-                        { name: 'France', max: 599.76},
-                        { name: 'Korea, Republic of', max: 599.76},
-                        { name: 'Poland', max: 599.76},
-                        { name: 'Germany', max: 599.76},
-                        { name: 'Japan', max: 599.76}
-                       ]
-        },
-        series: [
-            {
-            name: 'EIV MAX vs MIN',
-            type: 'radar',
-            data: [
-            {
-                value: {{max_eiv|safe}},
-                name: 'MAX'
-                },
-                {
-                value: {{min_eiv|safe}},
-                name: 'MIN'
-                }
-            
-            ]
-            }
-        ]
-        };
-
-     option && myChart.setOption(option);
-
-
-
-    </script>
-</div> 
 
 {% endblock %}
 
