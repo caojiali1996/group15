@@ -9,14 +9,14 @@
   <button
     class="btn btn-primary"
     {% if page == 1 %} disabled {% endif %}
-    onclick="location.href='/emissions/{{page|add:"-1"}}?order_by={{ order_by }}';"
+    onclick="location.href='/aggregation/{{page|add:"-1"}}?order_by={{ order_by }}';"
   >
     ❮ Previous
   </button>
   <button
     class="btn btn-primary"
     {% if page == num_pages %} disabled {% endif %}
-    onclick="location.href='/emissions/{{page|add:"1"}}?order_by={{ order_by }}';"
+    onclick="location.href='/aggregation/{{page|add:"1"}}?order_by={{ order_by }}';"
   >
     Next ❯
   </button>
