@@ -120,6 +120,69 @@
   </script>
 </div>  
 
-   
+<div class="container"style="width: 75%;text-align:center;padding-bottom: 50px;" >
+    <h2>EEDI Data of Different Countries</h2>
+
+    <canvas id="radarchart" width="400" height="200"></canvas>
+    
+    <script src="https://cdn.staticfile.org/echarts/4.3.0/echarts.min.js"></script>
+    
+    <script type="text/javascript">
+
+        var myChart = echarts.init(document.getElementById('main'));
+        var option;
+
+        option = {
+        title: {
+            text: ''
+        },
+        legend: {
+            data: ['max_eiv','min_eiv']
+        },
+        radar: {
+            // shape: 'circle',
+            indicator: [{ name: 'Bulk carrier', max: 53.16},
+{ name: 'Chemical tanker', max: 53.16},
+{ name: 'Combination carrier', max: 53.16},
+{ name: 'Container ship', max: 53.16},
+{ name: 'Container/ro-ro cargo ship', max: 53.16},
+{ name: 'Gas carrier', max: 53.16},
+{ name: 'General cargo ship', max: 53.16},
+{ name: 'LNG carrier', max: 53.16},
+{ name: 'Oil tanker', max: 53.16},
+{ name: 'Other ship types', max: 53.16},
+{ name: 'Passenger ship', max: 53.16},
+{ name: 'Refrigerated cargo carrier', max: 53.16},
+{ name: 'Ro-pax ship', max: 53.16},
+{ name: 'Ro-ro ship', max: 53.16},
+{ name: 'Vehicle carrier', max: 53.16}
+]
+        },
+        series: [
+            {
+            name: 'Budget vs spending',
+            type: 'radar',
+            data: [
+            {
+                value: {{max_eiv}},
+                name: 'MAX'
+                },
+                {
+                value: {{min_eiv}},
+                name: 'MIN'
+                }
+            
+            ]
+            }
+        ]
+        };
+
+        option && myChart.setOption(option);
+
+
+
+    </script>
+</div> 
+
 {% endblock %}
 
