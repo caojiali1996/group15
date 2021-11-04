@@ -110,20 +110,20 @@ def aggregation(request, page=1):
 def visual(request):
     """Shows the visual page"""
     with connections['default'].cursor() as cursor:
-        cursor.execute(f'''
-            SELECT ship_type,
-            MIN(technical_efficiency_number) AS min,
-            AVG(technical_efficiency_number) AS ave,
-            MAX(technical_efficiency_number) AS max
-            FROM co2emission_reduced
-            GROUP BY ship_type
-            ORDER BY ave DESC
-            ''')
-        res1 = list(cursor.fetchall())
-        labels = list([item[0] for item in res1])
-        min = list([item[1] for item in res1])
-        ave = list([item[2] for item in res1])
-        max = list([item[3] for item in res1])
+#         cursor.execute(f'''
+#             SELECT ship_type,
+#             MIN(technical_efficiency_number) AS min,
+#             AVG(technical_efficiency_number) AS ave,
+#             MAX(technical_efficiency_number) AS max
+#             FROM co2emission_reduced
+#             GROUP BY ship_type
+#             ORDER BY ave DESC
+#             ''')
+#         res1 = list(cursor.fetchall())
+#         labels = list([item[0] for item in res1])
+#         min = list([item[1] for item in res1])
+#         ave = list([item[2] for item in res1])
+#         max = list([item[3] for item in res1])
         
         cursor.execute(f'''
             select s.ship_type, sum(f.total_co2_emissions)
@@ -160,15 +160,8 @@ def visual(request):
     
     context = {
         'nbar': 'visual',
-        'labels': labels,
-        'min': min,
-        'ave': ave,
-        'max': max,
         'labels2':labels2,
-        'sum2': sum2,
-        'labels3':labels3,
-        'max_eiv': max_eiv,
-        'min_eiv': min_eiv
+        'sum2': sum2
     }
     return render(request, 'visual.html', context)
 
