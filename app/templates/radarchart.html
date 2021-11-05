@@ -3,8 +3,10 @@
 {% load static %}
 
 {% block content %}
-    <div class="container" style="width: 75%;padding-bottom: 50px;text-align:center;" >
-        <center><h2>EIV Data of Different Countries</h2></center> 
+<div id="main" style="width: 1600px;height:800px;">
+  <center><h2>EIV Data of Different Countries</h2></center>
+<div class="container" style="width: 75%;padding-bottom: 50px;text-align:center;" >
+<!--         <center><h2>EIV Data of Different Countries</h2></center>  -->        
         <canvas id="pie-chart" width="800" height="400"></canvas>
     <script src="https://cdn.staticfile.org/echarts/4.3.0/echarts.min.js"></script>
     <script type="text/javascript">
@@ -55,5 +57,6 @@
 
 
     </script>
+ </div>
  </div>
 {% endblock %}
